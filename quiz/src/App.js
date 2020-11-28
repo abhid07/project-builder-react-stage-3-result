@@ -11,11 +11,16 @@ class App extends Component {
   constructor()
   {
     super()
-    
     this.state={
-      correct : 0,
-      wrong : 0
+      correct:0
     }
+    
+  }
+
+  checkCorrect = ()=>{
+    this.setState({
+      correct:this.state.correct+1
+    })
   }
   render() {
     return (
@@ -26,10 +31,10 @@ class App extends Component {
               <HomeComponent />
             </Route>
             <Route path="/QuizComponent">
-              <QuizComponent />
+              <QuizComponent checkCorrect={this.checkCorrect}/>
             </Route>
             <Route path='/ResultComponent'>
-              <ResultComponent />
+              <ResultComponent {...this.state} />
             </Route>
           </Switch>
         </Router>
